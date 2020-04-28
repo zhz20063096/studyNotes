@@ -75,7 +75,28 @@ public int[] twoSum(int[] numbers, int target) {
         return [];
     }
 ```
-
+#GO
+```go
+func twoSum(numbers []int, target int) []int {
+    var(
+        i int
+        j int
+        sum int
+    )
+    j = len(numbers)-1
+    for i < j {
+        sum = numbers[i] + numbers[j]
+        if sum == target{
+            return []int{i + 1, j+1}
+        }else if sum > target{
+            j--
+        }else{
+            i++
+        }
+    }
+    return []int{}
+}
+```
 # 2. 两数平方和
 
 633\. Sum of Square Numbers (Easy)
