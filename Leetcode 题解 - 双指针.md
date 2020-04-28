@@ -34,6 +34,7 @@ Output: index1=1, index2=2
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/437cb54c-5970-4ba9-b2ef-2541f7d6c81e.gif" width="200px"> </div><br>
 
+#JAVA
 ```java
 public int[] twoSum(int[] numbers, int target) {
     if (numbers == null) return null;
@@ -51,6 +52,7 @@ public int[] twoSum(int[] numbers, int target) {
     return null;
 }
 ```
+#PHP
 ```php
  /**
      * @param Integer[] $numbers
