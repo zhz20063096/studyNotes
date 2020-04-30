@@ -198,6 +198,7 @@ Given s = "leetcode", return "leotcede".
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/ef25ff7c-0f63-420d-8b30-eafbeea35d11.gif" width="400px"> </div><br>
 
+#JAVA
 ```java
 private final static HashSet<Character> vowels = new HashSet<>(
         Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
@@ -221,7 +222,66 @@ public String reverseVowels(String s) {
     return new String(result);
 }
 ```
-
+#PHP
+```php
+    /**
+     * @param String $s
+     * @return String
+     */
+    function reverseVowels($s) {  
+        $i = 0;
+        $j = strlen($s) - 1;
+        $rows = ['a','e','i','o','u','A','E','I','O','U'];
+        while($i < $j){
+            if(in_array($s[$i], $rows)){
+                if(in_array($s[$j], $rows)){
+                    $tmp = $s[$i];
+                    $s[$i] = $s[$j];
+                    $s[$j] = $tmp;
+                    $i++;
+                    $j--;
+                }else{
+                    $j--;
+                }
+            }else{
+                $i++;
+            }
+        }
+        return $s;
+    }
+```
+#GO
+```go
+func reverseVowels(s string) string {
+     row := map[byte]bool{
+        'a': true,
+        'e': true,
+        'i': true,
+        'o': true,
+        'u': true,
+        'A': true,
+        'E': true,
+        'I': true,
+        'O': true,
+        'U': true,
+        }
+    i, j, str := 0, len(s)-1, []byte(s)
+    for i < j{
+        if _, v := row[str[i]]; v  {
+            if _, v = row[str[j]]; v {
+                str[i], str[j] = str[j], str[i]
+                i++
+                j--
+            }else{
+                j--
+            }
+        }else{
+            i++
+        }
+    }
+    return  string(str)
+}
+```
 # 4. 回文字符串
 
 680\. Valid Palindrome II (Easy)
