@@ -383,6 +383,7 @@ private boolean isPalindrome(String s, int i, int j) {
 ```
 #GO
 ```go
+方法一：
 func isPalindrome(s string, left int, right int) bool {
     for left < right {
         if s[left] != s[right]{
@@ -401,6 +402,30 @@ func validPalindrome(s string) bool {
             return isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1)
         }
         i++
+        j--
+    }
+    return true
+}
+方法二：
+func isPalindrome(s []byte, left int, right int) bool {
+    for left < right {
+        if s[left] != s[right]{
+            return false
+        }
+        left++
+        right--
+    }
+    return true
+}
+
+func validPalindrome(s string) bool {
+    i, j := 0, len(s) - 1;
+    str := []byte(s)
+    for  i < j {
+        if s[i] != s[j]{
+            return isPalindrome(str, i + 1, j) || isPalindrome(str, i, j - 1)
+        }
+        i++ 
         j--
     }
     return true
