@@ -350,6 +350,37 @@ private boolean isPalindrome(String s, int i, int j) {
 }
 ```
 
+#PHP
+```php
+    /**
+     * @param String $s
+     * @return Boolean
+     */
+    function validPalindrome($s) {
+        $i = 0;
+        $j = strlen($s) - 1;
+        while ($i < $j){
+            if($s[$i] != $s[$j]){ 
+                return $this->isPalindrome($s, $i+1, $j) or $this->isPalindrome($s, $i, $j-1);   
+            }
+            $i++;
+            $j--;
+        }
+        return true;
+    }
+
+    function isPalindrome($str, $left, $right) {
+        while($left < $right){
+            if($str[$left] != $str[$right]){
+               return false;
+            }
+            $left++;
+            $right--;
+        }
+        return true;
+    }   
+```
+
 # 5. 归并两个有序数组
 
 88\. Merge Sorted Array (Easy)
