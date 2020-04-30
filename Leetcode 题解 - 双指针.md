@@ -252,6 +252,7 @@ public String reverseVowels(String s) {
 ```
 #GO
 ```go
+方法一：
 func reverseVowels(s string) string {
      row := map[byte]bool{
         'a': true,
@@ -280,6 +281,25 @@ func reverseVowels(s string) string {
         }
     }
     return  string(str)
+}
+方法二：
+func reverseVowels(s string) string {
+	i, j := 0, len(s)-1
+	str := []byte(s)
+	for i < j {
+		if strings.Index("aeiouAEIOU", string(str[i])) != -1 {
+			if strings.Index("aeiouAEIOU", string(str[j])) != -1 {
+				str[i], str[j] = str[j], str[i]
+				i++
+				j--
+			} else {
+				j--
+			}
+		} else {
+			i++
+		}
+	}
+	return string(str)
 }
 ```
 # 4. 回文字符串
