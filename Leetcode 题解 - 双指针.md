@@ -118,7 +118,7 @@ Explanation: 1 * 1 + 2 * 2 = 5
 本题的关键是右指针的初始化，实现剪枝，从而降低时间复杂度。设右指针为 x，左指针固定为 0，为了使 0<sup>2</sup> + x<sup>2</sup> 的值尽可能接近 target，我们可以将 x 取为 sqrt(target)。
 
 因为最多只需要遍历一次 0\~sqrt(target)，所以时间复杂度为 O(sqrt(target))。又因为只使用了两个额外的变量，因此空间复杂度为 O(1)。
-
+#JAVA
 ```java
  public boolean judgeSquareSum(int target) {
      if (target < 0) return false;
@@ -136,7 +136,46 @@ Explanation: 1 * 1 + 2 * 2 = 5
      return false;
  }
 ```
-
+#PHP
+```php
+/**
+ * @param Integer $c
+ * @return Boolean
+ */
+function judgeSquareSum($c)
+{
+     $i = 0;
+     $j = floor(sqrt($c));
+     while ($i <= $j) {
+        $sum = $i * $i + $j * $j;
+	    if ($c == $sum) {
+	        return true;
+	    } elseif ($sum > $c) {
+			$j--;
+	    } else {
+	        $i++;
+	    }
+    }
+	return false;
+}
+```
+#GO
+```go
+func judgeSquareSum(c int) bool {
+    i,j := 0, int(math.Sqrt(float64(c)))
+    for i <= j {
+        sum := i*i + j*j
+        if sum == c {
+            return true
+        }else if sum > c{
+            j--
+        }else{
+            i++
+        }
+    }
+    return false
+}
+```
 # 3. 反转字符串中的元音字符
 
 345\. Reverse Vowels of a String (Easy)
