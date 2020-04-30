@@ -330,6 +330,7 @@ Explanation: You could delete the character 'c'.
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/db5f30a7-8bfa-4ecc-ab5d-747c77818964.gif" width="300px"> </div><br>
 
+#JAVA
 ```java
 public boolean validPalindrome(String s) {
     for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
@@ -380,7 +381,31 @@ private boolean isPalindrome(String s, int i, int j) {
         return true;
     }   
 ```
+#GO
+```go
+func isPalindrome(s string, left int, right int) bool {
+    for left < right {
+        if s[left] != s[right]{
+            return false
+        }
+        left++
+        right--
+    }
+    return true
+}
 
+func validPalindrome(s string) bool {
+    i, j := 0, len(s) - 1
+    for i < j {
+        if s[i] != s[j]{
+            return isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1)
+        }
+        i++
+        j--
+    }
+    return true
+}
+```
 # 5. 归并两个有序数组
 
 88\. Merge Sorted Array (Easy)
