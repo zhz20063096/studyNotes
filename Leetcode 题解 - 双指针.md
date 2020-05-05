@@ -449,6 +449,7 @@ Output: [1,2,2,3,5,6]
 
 需要从尾开始遍历，否则在 nums1 上归并得到的值会覆盖还未进行归并比较的值。
 
+#JAVA
 ```java
 public void merge(int[] nums1, int m, int[] nums2, int n) {
     int index1 = m - 1, index2 = n - 1;
@@ -462,6 +463,42 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
             nums1[indexMerge--] = nums1[index1--];
         } else {
             nums1[indexMerge--] = nums2[index2--];
+        }
+    }
+}
+```
+#PHP
+```php
+   /**
+     * @param Integer[] $nums1
+     * @param Integer $m
+     * @param Integer[] $nums2
+     * @param Integer $n
+     * @return NULL
+     */
+    function merge(&$nums1, $m, $nums2, $n) {
+        while($n > 0){
+            if($m > 0 && $nums1[$m-1] > $nums2[$n-1]){
+                $nums1[$m+$n-1] = $nums1[$m-1];
+                $m--;
+            }else{
+                $nums1[$m+$n-1] = $nums2[$n-1];
+                $n--;
+            }
+        }
+        return $nums1;
+    }
+```
+#GO
+```go
+func merge(nums1 []int, m int, nums2 []int, n int)  {
+    for n > 0{
+        if m > 0 && nums1[m-1] > nums2[n-1]{
+            nums1[m+n-1] = nums1[m-1]
+            m--
+        }else{
+            nums1[m+n-1] = nums2[n-1]
+            n--
         }
     }
 }
