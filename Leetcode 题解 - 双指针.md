@@ -486,7 +486,6 @@ public void merge(int[] nums1, int m, int[] nums2, int n) {
                 $n--;
             }
         }
-        return $nums1;
     }
 ```
 #GO
@@ -512,6 +511,7 @@ func merge(nums1 []int, m int, nums2 []int, n int)  {
 
 使用双指针，一个指针每次移动一个节点，一个指针每次移动两个节点，如果存在环，那么这两个指针一定会相遇。
 
+#JAVA
 ```java
 public boolean hasCycle(ListNode head) {
     if (head == null) {
@@ -528,7 +528,83 @@ public boolean hasCycle(ListNode head) {
     return false;
 }
 ```
-
+#PHP
+```php
+方法一：快慢指针法
+   /**
+     * @param ListNode $head
+     * @return Boolean
+     */
+    function hasCycle($head) {
+        $slow = $head;
+        $fast = $head;
+        while($fast && $fast->next){
+            $fast = $fast->next->next;
+            $slow = $slow->next;
+            if($fast === $slow){
+                return true;
+            }
+        }
+        return false;
+    }
+方法二：hashMap法    
+/**
+     * @param ListNode $head
+     * @return Boolean
+     */
+    function hasCycle($head) {
+        $hashMap = [];
+        while($head){
+            if(in_array($head, $hashMap)){
+                return true;
+            }
+            $hashMap[] = $head;
+            $head = $head->next;
+        }
+        return false;
+    }
+```
+#GO
+```go
+方法一：快慢指针法
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func hasCycle(head *ListNode) bool {
+    slow, fast := head, head
+    for fast != nil && fast.Next != nil{
+        slow = slow.Next
+        fast = fast.Next.Next
+        if slow == fast {
+            return true
+        }
+    }
+    return false
+}
+方法二：hashMap法
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func hasCycle(head *ListNode) bool {
+    hashMap := make(map[*ListNode]int)
+    for head != nil {
+        if _, ok := hashMap[head]; ok{
+            return true
+        }
+        hashMap[head] = head.Val
+        head = head.Next
+    }
+    return false
+}
+```
 # 7. 最长子序列
 
 524\. Longest Word in Dictionary through Deleting (Medium)
