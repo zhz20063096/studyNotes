@@ -623,6 +623,7 @@ Output:
 
 通过删除字符串 s 中的一个字符能得到字符串 t，可以认为 t 是 s 的子序列，我们可以使用双指针来判断一个字符串是否为另一个字符串的子序列。
 
+#JAVA
 ```java
 public String findLongestWord(String s, List<String> d) {
     String longestWord = "";
@@ -649,8 +650,67 @@ private boolean isSubstr(String s, String target) {
     return j == target.length();
 }
 ```
+#PHP
+```php
+   /**
+     * @param String $s
+     * @param String[] $d
+     * @return String
+     */
 
+    function findLongestWord($s, $d) {
+        $str = '';
+        foreach($d as $word){
+            $l1 =  strlen($str);
+            $l2 = strlen($word);
+            if($l1 > $l2 || ( $l1 == $l2 && strcmp($str, $word) < 0)) {
+                continue;
+            }
+            if($this->isSubStr($s, $word)){
+                $str = $word;
+            }  
+        }
+        return $str;
+    }
 
+    function isSubStr($s, $word) {
+        $i = $j = 0;
+        while($i < strlen($s) && $j < strlen($word)){
+            if($s[$i] == $word[$j]){
+                $j++;
+            }
+            $i++;
+        }
+        return $j == strlen($word);
+    }
+```
+#GO
+```go
+func findLongestWord(s string, d []string) string {
+    var str string
+    for _, word := range d{
+        l1, l2 := len(str), len(word)
+        if l1 > l2 || (l1 == l2 && bytes.Compare([]byte(str), []byte(word)) < 0) { 
+            continue;  
+        }
+        if isSubStr(s, word){
+            str = word
+        }
+    }
+    return str
+}
+
+func isSubStr(s string, word string) bool {
+    i, j := 0, 0
+    for i < len(s) && j < len(word){
+        if s[i] == word[j]{
+            j++
+        }
+        i++
+    }
+    return j == len(word)
+}
+```
 
 
 
