@@ -158,6 +158,7 @@ Given [1,1,1,2,2,3] and k = 2, return [1,2].
 
 把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。
 
+#JAVA
 ```java
 public List<Integer> topKFrequent(int[] nums, int k) {
     Map<Integer, Integer> frequencyForNum = new HashMap<>();
@@ -186,7 +187,43 @@ public List<Integer> topKFrequent(int[] nums, int k) {
     return topK;
 }
 ```
+#PHP
+```php
+func findKthLargest(nums []int, k int) int {
+    nums = heapSort(nums)
+    return nums[k-1]
+}
 
+func heapSort(nums []int) []int{
+    lens := len(nums)
+    //建堆,从非叶子结点开始调整
+    for i := lens/2; i >= 0; i-- {
+        down(nums, i, lens)
+    }
+    //将堆顶元素与末尾元素进行交换
+    for i := lens-1; i >= 0; i-- {
+        nums[0], nums[i] = nums[i], nums[0]
+        lens--
+        down(nums, 0, lens)
+    }
+    return nums
+}
+
+func down (nums []int, i, lens int){
+    min := i  //i父节点
+    left, right := 2*i+1, 2*i+2 //左，右孩子
+    if left < lens && nums[left] < nums[min] {
+        min = left
+    }
+    if right < lens && nums[right] < nums[min] {
+        min = right
+    }
+    if min != i {
+        nums[min], nums[i] = nums[i], nums[min]
+        down(nums, min, lens)
+    }
+}
+```
 ## 2. 按照字符出现次数对字符串排序
 
 451\. Sort Characters By Frequency (Medium)
