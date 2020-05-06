@@ -39,6 +39,7 @@ Output: 5
 
 题目描述：找到倒数第 k 个的元素。
 
+#JAVA
 **排序**  ：时间复杂度 O(NlogN)，空间复杂度 O(1)
 
 ```java
@@ -49,6 +50,7 @@ public int findKthLargest(int[] nums, int k) {
 ```
 
 **堆**  ：时间复杂度 O(NlogK)，空间复杂度 O(K)。
+
 
 ```java
 public int findKthLargest(int[] nums, int k) {
@@ -100,6 +102,43 @@ private void swap(int[] a, int i, int j) {
     a[i] = a[j];
     a[j] = t;
 }
+```
+#PHP
+```php
+方法一：堆排序（SPL标准库）
+   /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer
+     */
+    function findKthLargest($nums, $k) {
+        $h = new \SplMinHeap();
+        foreach ($nums as $value) {
+            $h->insert($value);
+            if ($h->count() > $k) {
+                $h->extract();
+            }
+        }
+        return $h->top();
+    }
+方法二：冒泡排序
+   /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer
+     */
+    function findKthLargest($nums, $k) {
+         for($i=0; $i < $k; $i++){
+            for($j = 0; $j < count($nums) - 1 - $i; $j++){
+                if($nums[$j] > $nums[$j+1]){
+                    $tmp = $nums[$j+1];
+                    $nums[$j+1] = $nums[$j];
+                    $nums[$j] = $tmp;
+                }
+            }
+        }
+        return $nums[$j];
+    }
 ```
 
 # 桶排序
