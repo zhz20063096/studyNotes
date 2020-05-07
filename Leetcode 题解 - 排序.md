@@ -224,7 +224,26 @@ public List<Integer> topKFrequent(int[] nums, int k) {
     return topK;
 }
 ```
-
+#PHP
+```php
+   /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer[]
+     */
+    function topKFrequent($nums, $k) {
+        $nums = array_count_values($nums);//统计数组中所有的值
+        $pq = new SplPriorityQueue;
+        foreach($nums as $key=>$val){
+            $pq->insert($key, $val);
+        } 
+        $nums = [];
+        for($i=0; $i<$k; $i++) {
+            $nums[] = $pq->extract();
+        }    
+        return $nums;
+    }
+```
 ## 2. 按照字符出现次数对字符串排序
 
 451\. Sort Characters By Frequency (Medium)
