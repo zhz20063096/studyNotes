@@ -410,6 +410,7 @@ Output: [0,0,1,1,2,2]
 
 题目描述：只有 0/1/2 三种颜色。
 
+#JAVA
 ```java
 public void sortColors(int[] nums) {
     int zero = -1, one = 0, two = nums.length;
@@ -430,8 +431,47 @@ private void swap(int[] nums, int i, int j) {
     nums[j] = t;
 }
 ```
-
-
+#PHP
+```php
+   /**
+     * @param Integer[] $nums
+     * @return NULL
+     */
+    function sortColors(&$nums) {
+        $left = 0;
+        $len = count($nums) -1;
+        for ($i=0; $i<= $len;) {
+            if ($nums[$i] == 0) {
+                [$nums[$i], $nums[$left]] = [$nums[$left], $nums[$i]];
+                $left++;
+                $i++;
+            }elseif($nums[$i] == 1){
+                $i++;
+            }else{          
+                [$nums[$i], $nums[$len]] = [$nums[$len], $nums[$i]];
+                $len--;
+            }
+        }
+    }
+```
+#GO
+```go
+func sortColors(nums []int) {
+    left, len := 0, len(nums)-1
+    for i := 0; i <= len; {
+        if nums[i] == 0{
+            nums[i], nums[left] = nums[left], nums[i]
+            left++
+            i++
+        }else if nums[i] == 1{
+            i++
+        }else{
+            nums[i], nums[len] = nums[len], nums[i]
+            len--
+        }
+    }
+}
+```
 
 
 
