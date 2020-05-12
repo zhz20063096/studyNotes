@@ -37,6 +37,7 @@ Output: 2
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/e69537d2-a016-4676-b169-9ea17eeb9037.gif" width="430px"> </div><br>
 
+#JAVA
 ```java
 public int findContentChildren(int[] grid, int[] size) {
     if (grid == null || size == null) return 0;
@@ -52,7 +53,41 @@ public int findContentChildren(int[] grid, int[] size) {
     return gi;
 }
 ```
-
+#PHP
+```php
+    /**
+     * @param Integer[] $g
+     * @param Integer[] $s
+     * @return Integer
+     */
+    function findContentChildren($g, $s) {
+        sort($g);
+        sort($s);
+        [$i, $j, $len1, $len2] = [0, 0, count($g), count($s)];
+        while ($i < $len1 && $j < $len2){
+            if($g[$i] <= $s[$j]){
+                $i++;
+            }
+            $j++;
+        }
+        return $i;
+    }
+```
+#GO
+```go
+func findContentChildren(g []int, s []int) int {
+    i, j, len1, len2 := 0, 0, len(g), len(s)
+    sort.Ints(g)
+    sort.Ints(s)
+    for i < len1 && j < len2{
+        if g[i] <= s[j]{
+            i++
+        }
+        j++
+    }
+    return i
+}
+```
 # 2. 不重叠的区间个数
 
 435\. Non-overlapping Intervals (Medium)
