@@ -317,7 +317,7 @@ Explanation:
 'e' appears twice while 'r' and 't' both appear once.
 So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
 ```
-
+#JAVA
 ```java
 public String frequencySort(String s) {
     Map<Character, Integer> frequencyForNum = new HashMap<>();
@@ -344,6 +344,47 @@ public String frequencySort(String s) {
         }
     }
     return str.toString();
+}
+```
+#PHP
+```php
+   /**
+     * @param String $s
+     * @return String
+     */
+    function frequencySort($s) {
+        $row = array_count_values(str_split($s));
+        arsort($row);
+        $s = '';
+        foreach($row as $str=>$nums){
+            $s .= str_repeat($str, $nums);
+        }
+        return $s;
+    }
+```
+#GO
+```go
+import (
+    "strings"
+    "sort"
+)
+func frequencySort(s string) string {
+    strs := strings.Split(s, "")
+    strsMap := make(map[string]string)
+    for i := 0; i < len(strs); i++ {
+        strsMap[strs[i]] += strs[i]//字符串拼接
+    }
+    //把strsMap转化成可排序的strList
+    strList := make([]string, 0, len(strsMap))
+    for _, val := range strsMap {
+        strList = append(strList, val)
+    }
+    // 对strList的value进行排序
+    sort.Slice(strList, func(i, j int) bool {
+        return len(strList[i]) >= len(strList[j])
+    })
+    // 返回拼接的字符串
+    return strings.Join(strList, "")
 }
 ```
 
